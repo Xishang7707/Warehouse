@@ -3,20 +3,111 @@
 	<head>
 		<meta charset="UTF-8">
 		<title></title>
-		<script type="text/javascript" src="script/jquery-3.2.1.min.js" ></script>
+		<link href="css/bootstrap.min.css" rel="stylesheet" />
+		<link href="css/index.css" rel="stylesheet" />
+		<script type="text/javascript" src="script/jquery-3.2.1.min.js"></script>
+		<script src="script/vue.js"></script>
+		<script src="script/popper.min.js"></script>
+		<script src="script/bootstrap.min.js"></script>
 	</head>
 	<body>
-		<script>
-			$(function(){
-				$.ajax({
-					url:'http://warehouse.com/api/error/init',
-					type:'POST',
-					data:{'kkkkkkkkkkkkkkkkkkk':'1231213123'},
-					success:function(in_data){
-						console.log(in_data);
-					}
-				})
-			})
-		</script>
+		<div class="constainer-fluid d-flex flex-row" style="min-height: 100vh;">
+			<div class="" style="width: 17rem;background: #00A0EA; height: 100vh;">
+				<h4 class="text-center text-white font-weight-bold pt-3 pb-3" style="background: #0056B3;">仓库管理系统</h4>
+				<div id="menu-list">
+					<dl>
+						<dt class="text-white p-2" data-toggle="collapse" data-target="#list-1">
+							<h6 class="font-weight-bold">货物管理</h6>
+						</dt>
+						<dd id="list-1" class="collapse show" data-parent="#menu-list">
+							<ul class="text-white">
+								<li class="p-2">入库管理</li>
+								<li class="p-2">出库管理</li>
+								<li class="p-2">借货还货</li>
+								<li class="p-2">盘点管理</li>
+							</ul>
+						</dd>
+					</dl>
+					<dl>
+						<dt class="text-white p-2" data-toggle="collapse" data-target="#list-2">
+							<h6 class="font-weight-bold">基本档案</h6>
+						</dt>
+						<dd id="list-2" class="collapse" data-parent="#menu-list">
+							<ul class="text-white">
+								<li class="p-2">供货商设置</li>
+								<li class="p-2">货物档案设置</li>
+								<li class="p-2">仓库设置</li>
+							</ul>
+						</dd>
+					</dl>
+					<dl>
+						<dt class="text-white p-2" data-toggle="collapse" data-target="#list-3">
+							<h6 class="font-weight-bold">查询统计</h6>
+						</dt>
+						<dd id="list-3" class="collapse" data-parent="#menu-list">
+							<ul class="text-white">
+								<li class="p-2">库存查询</li>
+								<li class="p-2">出入库查询</li>
+								<li class="p-2">借还货物查询</li>
+								<li class="p-2">警戒货物</li>
+								<li class="p-2">出入货物月统计</li>
+								<li class="p-2">出入货物年统计</li>
+							</ul>
+						</dd>
+					</dl>
+					<dl>
+						<dt class="text-white p-2" data-toggle="collapse" data-target="#list-4">
+							<h6 class="font-weight-bold">用户管理</h6>
+						</dt>
+						<dd id="list-4" class="collapse" data-parent="#menu-list">
+							<ul class="text-white">
+								<li class="p-2">用户列表</li>
+								<li class="p-2">重新登录</li>
+							</ul>
+						</dd>
+					</dl>
+					<dl>
+						<dt class="text-white p-2" data-toggle="collapse" data-target="#list-5">
+							<h6 class="font-weight-bold">系统维护</h6>
+						</dt>
+						<dd id="list-5" class="collapse" data-parent="#menu-list">
+							<ul class="text-white">
+								<li class="p-2">数据备份</li>
+								<li class="p-2">数据还原</li>
+								<li class="p-2">数据压缩</li>
+							</ul>
+						</dd>
+					</dl>
+					<dl>
+						<dt class="text-white p-2" data-toggle="collapse" data-target="#list-6">
+							<h6 class="font-weight-bold">系统管理</h6>
+						</dt>
+						<dd id="list-6" class="collapse" data-parent="#menu-list">
+							<ul class="text-white">
+								<li class="p-2">产品出入库管理</li>
+								<li class="p-2">事件记录</li>
+								<li class="p-2">报表生成</li>
+							</ul>
+						</dd>
+					</dl>
+					<dl>
+						<dt class="text-white p-2" data-toggle="collapse" data-target="#list-7">
+							<h6 class="font-weight-bold">帮助</h6>
+						</dt>
+						<dd id="list-7" class="collapse" data-parent="#menu-list">
+							<ul class="text-white">
+								<li class="p-2">关于本系统</li>
+								<li class="p-2">使用说明</li>
+							</ul>
+						</dd>
+					</dl>
+				</div>
+			</div>
+			<div style="width:calc(100vw - 17rem);" class="embed-responsive">
+				<iframe src="https://baidu.com" class="embed-responsive-item">
+
+				</iframe>
+			</div>
+		</div>
 	</body>
 </html>
