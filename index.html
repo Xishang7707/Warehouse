@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script type="text/javascript" src="script/jquery-3.2.1.min.js" ></script>
+	</head>
+	<body>
+		<script>
+			$(function(){
+				$.ajax({
+					url:'http://warehouse.com/api/error/init',
+					type:'POST',
+					data:{'kkkkkkkkkkkkkkkkkkk':'1231213123'},
+					success:function(in_data){
+						console.log(in_data);
+					}
+				})
+			})
+		</script>
+	</body>
+</html>
