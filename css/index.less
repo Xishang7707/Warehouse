@@ -1,19 +1,40 @@
-ul{
+ul {
 	list-style: none;
 }
-dl, ul, h4, h5{
+dl,
+dt,
+dd,
+ul,
+h4,
+h5 {
 	margin: 0;
 	padding: 0;
 }
 
-#menu-list{
-	dl{
-		
-		dt{
+#menu-list {
+	dl {
+		dt,
+		dd {
 			cursor: pointer;
 		}
-		dd{
-			cursor: pointer;
+		dd {
+			background: #353535;
 		}
 	}
+	ul a {
+		color: #fff;
+	}
+	ul a:hover {
+		text-decoration: none;
+	}
+	ul li{
+		transition: all .1s linear;
+	}
+	ul li:hover {
+		background: #5a5a5a;
+	}
+}
+.menu-active,
+.menu-item-active {
+	background: #09f;
 }
