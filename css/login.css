@@ -1,0 +1,9 @@
+input,
+button,
+select,
+textarea {
+  outline: none;
+}
+.focus_active {
+  color: #09f !important;
+}

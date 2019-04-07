@@ -1,6 +1,6 @@
 <?php
 namespace Framework;
-
+use DAL\DBHelper;
 
 defined('CODE_PATH') or define('CODE_PATH', __DIR__);
 
@@ -14,12 +14,22 @@ class Framework{
 	
 	public function Run()
     {
-        spl_autoload_register(array(
-            $this,
-            'LoadClass'
-        ));
-
-		$this->Route();        
+		try{
+			spl_autoload_register(array(
+				$this,
+				'LoadClass'
+			));
+			
+			DBHelper::Init($this->config['DB']);
+			
+			$this->Route();        
+		}catch(\Exception $e)
+		{
+			if($this->config['DEBUG'])
+				echo $this->SendData(400, $e);
+			else
+				echo $this->SendData(400, '请求错误');
+		}
     }
 
     protected function Route()
@@ -31,32 +41,31 @@ class Framework{
 		
 		if($urls[0]!=='api')
 		{
-			echo $this->SendData(400, '请求错误');
-			exit();
+			throw new \Exception('接口请求错误');
 		}
 		
-		$api = isset($urls[1])?$urls[1]:false;
-		$action = isset($urls[2])?$urls[2]:false;
+ 		$api = isset($urls[1])?$urls[1]:false;
+ 		$action = isset($urls[2])?$urls[2]:false;
+
 
 		if(!$api||!$action)
 		{
-			echo $this->SendData(400, '请求错误');
-			exit();
+			throw new \Exception('接口请求错误');
 		}
 		
 		$api_ctl = 'API\\'.$api.'Controller';
+		
 		if(!class_exists($api_ctl)||
 		   !method_exists($api_ctl, $action))
 		{
-			echo $this->SendData(404, '未找到请求');
-			exit();
+			throw new \Exception('ctl或action不存在');
 		}
-		$dispatch = new $api_ctl($api_ctl, $action);
+		$dispatch = new $api_ctl($api_ctl, $action, $this->config);
 		
 		call_user_func_array(array(
 		    $dispatch,
 		    $action
-		), $_POST);
+		), array($_POST));
 //      $dispatch = new $controller($controllerName, $action);
 //
 //      call_user_func_array(array(

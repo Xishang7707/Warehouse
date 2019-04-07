@@ -4,17 +4,20 @@
 		<meta charset="UTF-8">
 		<title></title>
 		<link href="css/bootstrap.min.css" rel="stylesheet" />
-		<link href="css/zico.min.css" rel="stylesheet"/>
+		<link href="css/zico.min.css" rel="stylesheet" />
 		<link href="css/index.css" rel="stylesheet" />
 		<script type="text/javascript" src="script/jquery-3.2.1.min.js"></script>
 		<script src="script/vue.js"></script>
 		<script src="script/popper.min.js"></script>
 		<script src="script/bootstrap.min.js"></script>
+		<script src="script/jsencrapy.js"></script>
+		<script src="script/global.js"></script>
+		<script src="script/index.js"></script>
 	</head>
 	<body>
 		<div class="constainer-fluid d-flex flex-row" style="min-height: 100vh;">
 			<div class="" style="width: 17rem;background: #444; height: 100vh;">
-				<h4 class="text-center text-white font-weight-bold pt-3 pb-3" style="background: #1f1f1f"><i class="zi zi_warehouse"></i>仓库管理系统</h4>
+				<h4 class="text-center text-white font-weight-bold pt-3 pb-3" style="background: #1f1f1f"><i class="zi zi_warehouse pr-2"></i>仓库管理系统</h4>
 				<div id="menu-list">
 					<dl>
 						<dt class="text-white p-2 menu-active" data-toggle="collapse" data-target="#list-1">
@@ -64,6 +67,7 @@
 						<dd id="list-4" class="collapse" data-parent="#menu-list">
 							<ul class="text-white">
 								<li class="p-2 pl-4"><a href="#">用户列表</a></li>
+								<li class="p-2 pl-4"><a href="#">修改密码</a></li>
 								<li class="p-2 pl-4"><a href="#">重新登录</a></li>
 								<li class="p-2 pl-4"><a href="#">退出登录</a></li>
 							</ul>
@@ -99,18 +103,19 @@
 						</dt>
 						<dd id="list-7" class="collapse" data-parent="#menu-list">
 							<ul class="text-white">
-								<li class="p-2 pl-4"><a href="#">关于本系统</a></li>
 								<li class="p-2 pl-4"><a href="#">使用说明</a></li>
+								<li class="p-2 pl-4"><a href="#">关于本系统</a></li>
 							</ul>
 						</dd>
 					</dl>
 				</div>
 			</div>
 			<div style="width:calc(100vw - 17rem);" class="embed-responsive">
-				<iframe src="https://baidu.com" class="embed-responsive-item">
+				<iframe class="embed-responsive-item">
 
 				</iframe>
 			</div>
 		</div>
+
 	</body>
 </html>

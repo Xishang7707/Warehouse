@@ -1,8 +1,10 @@
 <?php
-error_reporting(E_ALL);
-header('Content-type:text/json');
+
+header("Content-Type: text/json");
 
 define('APP_PATH', __DIR__.'/');
+
+session_start();
 
 $config = require_once('Config/config.php');
 
