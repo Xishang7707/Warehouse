@@ -8,6 +8,7 @@ class VerifyDAL
 		$sql = "select * from User where id='$id' and password='$password'";
 		$db = new DBHelper();
 		$result = $db->Exec($sql, true);
+		$db->Close();
 		if(count($result)!=1)
 		{
 			return false;

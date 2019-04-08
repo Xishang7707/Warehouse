@@ -6,16 +6,17 @@ class UserDAL
 	/**
 	 * 注册用户
 	 */
-	public static function MakeUser($id, $name, $pwd, $position_id)
+	public static function MakeUser($id, $name, $pwd, $rule_id)
 	{
 		$salt = Tools::MakeSalt();
 		$password = Tools::encrypt_pwd($pwd, $salt);
-		$sql = "insert User(id, name, password, salt, position_id) 
-				values('$id', '$name', '$password', '$salt', $position_id)";
+		$sql = "insert User(id, name, password, salt, rule_id) 
+				values('$id', '$name', '$password', '$salt', $rule_id)";
 		
 		$db = new DBHelper();
 
 		$result = $db->Exec($sql);
+		$db->Close();
 		if(!$result)
 			return null;
 		return $result;
@@ -36,7 +37,6 @@ class UserDAL
 		$sql = "select * from User where id='$id'";
 		$db = new DBHelper();
 		$result = $db->Exec($sql, true);
-		
 		if(count($result)<=0)
 			return null;
 		else return $result[0];
@@ -44,9 +44,12 @@ class UserDAL
 	
 	public static function Login($id, $pwd)
 	{
+
 		$us_info = self::GetInfo($id);
+
 		if($us_info===null)
 			return false;
+
 		$enc = Tools::encrypt_pwd($pwd, $us_info['salt']);
 		
 		if($us_info['password']!==$enc)

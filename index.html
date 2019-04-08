@@ -5,12 +5,14 @@
 		<title></title>
 		<link href="css/bootstrap.min.css" rel="stylesheet" />
 		<link href="css/zico.min.css" rel="stylesheet" />
+		<link href="css/components.css" rel="stylesheet" />
 		<link href="css/index.css" rel="stylesheet" />
 		<script type="text/javascript" src="script/jquery-3.2.1.min.js"></script>
 		<script src="script/vue.js"></script>
 		<script src="script/popper.min.js"></script>
 		<script src="script/bootstrap.min.js"></script>
 		<script src="script/jsencrapy.js"></script>
+		<script src="script/components.js"></script>
 		<script src="script/global.js"></script>
 		<script src="script/index.js"></script>
 	</head>
@@ -19,17 +21,18 @@
 			<div class="" style="width: 17rem;background: #444; height: 100vh;">
 				<h4 class="text-center text-white font-weight-bold pt-3 pb-3" style="background: #1f1f1f"><i class="zi zi_warehouse pr-2"></i>仓库管理系统</h4>
 				<div id="menu-list">
-					<dl>
+					<menu-list v-for='item in permis_list' @click.native=menu_click :id="item['id']" :menu_list_item=item['menu-list']>{{item['name']}}</menu-list>
+					<!-- 	<dl>
 						<dt class="text-white p-2 menu-active" data-toggle="collapse" data-target="#list-1">
 							<a class="font-weight-bold">货物管理</a>
 						</dt>
 						<dd id="list-1" class="collapse show" data-parent="#menu-list">
 							<ul class="text-white">
-								<li class="p-2 pl-4"><a href="#">入库管理</a></li>
-								<li class="p-2 pl-4"><a href="#">出库管理</a></li>
-								<li class="p-2 pl-4"><a href="#">借货</a></li>
-								<li class="p-2 pl-4"><a href="#">还货</a></li>
-								<li class="p-2 pl-4"><a href="#">盘点管理</a></li>
+								<menu-list-item href='http://baidu.com' target='#menu-content'>入库管理</menu-list-item>
+								<li><a class="p-2 pl-4" style="display: block;" href="#">出库管理</a></li>
+								<li><a class="p-2 pl-4" style="display: block;" href="#">借货</a></li>
+								<li><a class="p-2 pl-4" style="display: block;" href="#">还货</a></li>
+								<li><a class="p-2 pl-4" style="display: block;" href="#">盘点管理</a></li>
 							</ul>
 						</dd>
 					</dl>
@@ -108,10 +111,11 @@
 							</ul>
 						</dd>
 					</dl>
+				 -->
 				</div>
 			</div>
 			<div style="width:calc(100vw - 17rem);" class="embed-responsive">
-				<iframe class="embed-responsive-item">
+				<iframe class="embed-responsive-item" id="menu-content">
 
 				</iframe>
 			</div>

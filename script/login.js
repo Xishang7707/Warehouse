@@ -29,7 +29,7 @@ $(function() {
 						'id': this.jobid,
 						'password': encrypt(this.password)
 					},
-					call: function(data) {
+					call: (data)=> {
 						if (data['code'] == 200) {
 							_this.text('登陆成功  (跳转中...)');
 							alert_success_tip('登陆成功');

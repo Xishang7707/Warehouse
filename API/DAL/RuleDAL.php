@@ -11,6 +11,7 @@ class PositionDAL
 		$sql = "select * from Position where id=$id";
 		$db = new DBHelper();
 		$result = $db->Exec($sql, true);
+		$db->Close();
 		if(!result)
 			return null;
 		return $result[0];

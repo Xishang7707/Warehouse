@@ -26,7 +26,7 @@ class Framework{
 		}catch(\Exception $e)
 		{
 			if($this->config['DEBUG'])
-				echo $this->SendData(400, $e);
+				echo $this->SendData(400, '请求错误', $e->getMessage());
 			else
 				echo $this->SendData(400, '请求错误');
 		}
@@ -36,9 +36,10 @@ class Framework{
     {
 
 		$urls = explode('/', $_SERVER['REQUEST_URI']);
+		
 		$urls = array_filter($urls);
 		$urls = array_values($urls);
-		
+
 		if($urls[0]!=='api')
 		{
 			throw new \Exception('接口请求错误');
@@ -53,12 +54,12 @@ class Framework{
 			throw new \Exception('接口请求错误');
 		}
 		
-		$api_ctl = 'API\\'.$api.'Controller';
-		
+		$api_ctl = 'API\\'.ucfirst($api).'Controller';
+
 		if(!class_exists($api_ctl)||
 		   !method_exists($api_ctl, $action))
 		{
-			throw new \Exception('ctl或action不存在');
+			throw new \Exception('请求不存在');
 		}
 		$dispatch = new $api_ctl($api_ctl, $action, $this->config);
 		

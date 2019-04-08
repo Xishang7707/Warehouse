@@ -4,7 +4,7 @@ use Framework\Base\APIController;
 use Tools\OpenSSL;
 use DAL\UserDAL;
 use DAL\VerifyDAL;
-use DAL\PermissionDAL;
+use DAL\PrivilegeDAL;
 
 class UsersController extends APIController
 {
@@ -15,12 +15,12 @@ class UsersController extends APIController
 			$id = isset($data['id'])?$data['id']:null;
 			$name = isset($data['name'])?$data['name']:null;
 			$password = isset($data['password'])?$data['password']:null;
-			$position_id = isset($data['position_id'])?$data['position_id']:null;
+			$rule_id = isset($data['rule_id'])?$data['rule_id']:null;
 
 			if($id===null||
 				$name===null||
 				$password===null||
-				$position_id===null)
+				$rule_id===null)
 				throw new \Exception('请求错误', 400);
 
 			$exists = UserDAL::Exists($id);
@@ -34,7 +34,7 @@ class UsersController extends APIController
 			if($dec_pwd===FALSE)
 				throw new \Exception('请求错误', 400);
 
-			$result = UserDAL::MakeUser($id, $name, $dec_pwd, $position_id);
+			$result = UserDAL::MakeUser($id, $name, $dec_pwd, $rule_id);
 			
 			if(!$result)
 				throw new \Exception('请求错误', 400);
@@ -50,33 +50,37 @@ class UsersController extends APIController
 	public function Login($data)
 	{
 		try{
+			
 			$id = isset($data['id'])?$data['id']:null;
 			$password = isset($data['password'])?$data['password']:null;
 
 			if($id===null||
 				$password===null)
-				throw new \Exception('请求错误', 400);
-			
+				throw new \Exception('请求错误1', 400);
+
 			$dec_pwd = OpenSSL::prv_decrypt(base64_decode($password), $this->config['PrvKey']);
 
 			if($dec_pwd===FALSE)
-				throw new \Exception('请求错误', 400);
+				throw new \Exception('请求错误2', 400);
 			//print_r($dec_pwd);
+
 			$result = UserDAL::Login($id, $dec_pwd);
+
 			if(!$result)
 				throw new \Exception('账号密码验证错误', 10002);
+			
 			$_SESSION['us_info']=$result;
 			$this->SendData(200, '成功');
 		}catch(\Exception $e)
 		{
-			$this->SendData($e->getCode(), $e->getMessage());
+			$this->SendData($e->getCode(), $e->getMessage(), $e);
 		}
 	}
 	
 	public function GetInfo($data)
 	{
 		try{
-			$us_info = $_SESSION['us_info'];
+			$us_info = isset($_SESSION['us_info'])?$_SESSION['us_info']:null;
 			if(
 			!$us_info||
 			!$us_info['id']||
@@ -89,7 +93,7 @@ class UsersController extends APIController
 			unset($us_info['salt']);
 			unset($us_info['ct_time']);
 			
-			$pms_log = PermissionDAL::GetInfo($us_info['id']);
+			$pms_log = PrivilegeDAL::GetInfo($us_info['id']);
 			
 			$ret_data = array(
 			'us-info'=>$us_info,

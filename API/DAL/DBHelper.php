@@ -26,7 +26,9 @@ class DBHelper
 	public function Exec($sql, $is_arr=false)
 	{
 		$result = $this->conn->query($sql);
-		$this->conn->close();
+		
+		if(!$result)
+			return null;
 
 		if($is_arr)
 		{
@@ -38,7 +40,10 @@ class DBHelper
 		}
 		return $result;
 	}
-	
+	public function Close()
+	{
+		$this->conn->close();
+	}
 	/**
 	 * 开启事务
 	 */

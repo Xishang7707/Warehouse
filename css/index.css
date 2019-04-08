@@ -26,7 +26,7 @@ h5 {
 #menu-list ul li {
   transition: all 0.1s linear;
 }
-#menu-list ul li:hover {
+#menu-list ul li:hover:not(.menu-active) {
   background: #5a5a5a;
 }
 .menu-active,
